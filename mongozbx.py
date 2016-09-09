@@ -23,7 +23,7 @@ class ArgumentParser(argparse.ArgumentParser):
 
 def parseargs():
     parser = ArgumentParser(
-        description='Zabbix agent (3.0) native plugin for Mongodb monitoring.')
+        description='Zabbix agent (3.0) native plugin for Mongodb monitoring.', add_help=False)
     parser.add_argument(
         'uri',
         help='the Mongo URI to connect, authenticate, select the database.')
