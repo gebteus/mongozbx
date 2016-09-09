@@ -23,7 +23,8 @@ class ArgumentParser(argparse.ArgumentParser):
 
 def parseargs():
     parser = ArgumentParser(
-        description='Zabbix agent (3.0) native plugin for Mongodb monitoring.', add_help=False)
+        description='Zabbix agent (3.0) native plugin for Mongodb monitoring.',
+        add_help=False)
     parser.add_argument(
         'uri',
         help='the Mongo URI to connect, authenticate, select the database.')
@@ -55,23 +56,31 @@ def get_value_through_path(data, path):
 def connect(uri):
     return pymongo.MongoClient(uri)
 
-def prepare_query(command='', query=[]):
-    result = []
-    try:
-        query = ';'.join(query)
-        query = dict(i.split("=") for i in query.split(";"))
-        if command not in query:
-            raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
-        qlist = []
-        qkeys = query.keys()
-        qlist.append((command, query.get(command)))
-        qkeys.remove(command)
-        for key in qkeys:
-            qlist.append((key, query.get(key)))
-        result = qlist
-    except Exception as _e:
-        raise _e
-    return result
+def prepare_query(command, query):
+    if not command or not isinstance(command, str):
+        raise Exception('Command invalid')
+    if not query or not isinstance(query, list):
+        raise Exception('Query invalid')
+    i = 0
+    while True:
+        i += 1
+        if 0 < i < len(query):
+            if '=' not in query[i]:
+                query[i-1] += ' ' + query.pop(i)
+                i = 0
+        else:
+            break
+    query = ';'.join(query)
+    query = dict(i.split("=") for i in query.split(";"))
+    if command not in query:
+        raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
+    qlist = []
+    qkeys = query.keys()
+    qlist.append((command, query.get(command)))
+    qkeys.remove(command)
+    for key in qkeys:
+        qlist.append((key, query.get(key))) 
+    return qlist
 
 def stdout(message=''):
     sys.stdout.write('{0}\n'.format(message))
