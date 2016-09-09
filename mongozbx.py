@@ -2,7 +2,8 @@
 
 import sys
 def stderr(message='', code=1):
-    sys.stderr.write('Error: {0}.\n'.format(message))
+    sys.stderr.write('Error: {0}.\n'.format(
+        str(message)))
     return code
 
 import json
@@ -13,7 +14,7 @@ try:
     from bson import json_util
 except ImportError as _ie:
     sys.exit(
-        stderr(_ie.message))
+        stderr(_ie))
 
 class ArgumentParser(argparse.ArgumentParser):
     def error(self, message):
@@ -49,7 +50,7 @@ def get_value_through_path(data, path):
                     item = item[int(i)]
                 else:
                     item = item.get(i)
-    except Exception as _e:
+    except:
         pass
     return item
 
@@ -74,10 +75,11 @@ def prepare_query(command, query):
     if command not in query:
         raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
     qlist = []
-    qkeys = query.keys()
+    qkeys = list(
+        query.keys())
     qlist.append(
         (command, query.get(command)))
-    qkeys.remove(command)
+    del qkeys[qkeys.index(command)]
     for key in qkeys:
         qlist.append(
             (key, query.get(key))) 
@@ -103,7 +105,7 @@ def main():
             mclient.close()
     except Exception as _e:
         sys.exit(
-            stderr(_e.message))
+            stderr(_e))
     else:
         sys.exit(0)
 
