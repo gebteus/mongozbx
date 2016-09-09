@@ -70,8 +70,7 @@ def prepare_query(command, query):
                 i = 0
         else:
             break
-    query = ';'.join(query)
-    query = dict(i.split("=") for i in query.split(";"))
+    query = dict(s.split('=') for s in query)
     if command not in query:
         raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
     qlist = []
@@ -104,5 +103,5 @@ def main():
         sys.exit(
             stderr(_e.message))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
