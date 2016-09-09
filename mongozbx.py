@@ -97,7 +97,6 @@ def main():
                 SON(query))
             stdout(json.dumps(
                 get_value_through_path(response, args.path), default=json_util.default))
-            sys.exit(0)
         except Exception as _e:
             raise _e
         finally:
@@ -105,6 +104,8 @@ def main():
     except Exception as _e:
         sys.exit(
             stderr(_e.message))
+    else:
+        sys.exit(0)
 
 if __name__ == '__main__':
     main()
