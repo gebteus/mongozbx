@@ -13,13 +13,13 @@ try:
     from bson import json_util
 except ImportError as _ie:
     sys.exit(
-        stderr(_ie.message, 1))
+        stderr(_ie.message))
 
 class ArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         self.print_help()
         sys.exit(
-            stderr(message, 1))
+            stderr(message))
 
 def parseargs():
     parser = ArgumentParser(
@@ -28,16 +28,14 @@ def parseargs():
         'uri',
         help='the Mongo URI to connect, authenticate, select the database.')
     parser.add_argument(
-        'command',
-        help='command is the command name such as serverStatus, dbStats, find, count...')
-    parser.add_argument(
-        'query',
-        help='query is the complete JSON query (including command).'
-        'It must be double-quoted, and internal quotes must be escaped using \.')
-    parser.add_argument(
         'path',
-        help='the path to the wanted value. If empty, the complete result will be returned as a JSON string.'
-        'If the path points to something not being a simple value, the content is returned as a JSON string.')
+        help='the path to the wanted value. If the path points to something not being a simple value, the content is returned as a JSON string.')
+    parser.add_argument(
+        'command',
+        help='command is the command name such as serverStatus, dbStats, find, count and etc.')
+    parser.add_argument(
+        'query', nargs='*',
+        help='query is the complete query (including command).')
     return parser.parse_args()
 
 def get_value_through_path(data, path):
@@ -56,10 +54,11 @@ def get_value_through_path(data, path):
 def connect(uri):
     return pymongo.MongoClient(uri)
 
-def prepare_query(command='', query=''):
+def prepare_query(command='', query=[]):
     result = []
     try:
-        query = json.loads(query)
+        query = ';'.join(query)
+        query = dict(i.split("=") for i in query.split(";"))
         if command not in query:
             raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
         qlist = []
@@ -93,7 +92,7 @@ def main():
             mclient.close()
     except Exception as _e:
         sys.exit(
-            stderr(_e.message, 1))
+            stderr(_e.message))
 
 if __name__ == "__main__":
     main()
