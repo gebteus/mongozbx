@@ -75,10 +75,12 @@ def prepare_query(command, query):
         raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
     qlist = []
     qkeys = query.keys()
-    qlist.append((command, query.get(command)))
+    qlist.append(
+        (command, query.get(command)))
     qkeys.remove(command)
     for key in qkeys:
-        qlist.append((key, query.get(key))) 
+        qlist.append(
+            (key, query.get(key))) 
     return qlist
 
 def stdout(message=''):
@@ -91,7 +93,8 @@ def main():
         try:
             db = mclient.get_default_database()
             query = prepare_query(args.command, args.query)
-            response = db.command(SON(query))
+            response = db.command(
+                SON(query))
             stdout(json.dumps(
                 get_value_through_path(response, args.path), default=json_util.default))
             sys.exit(0)
