@@ -29,7 +29,8 @@ def parseargs():
         help='the Mongo URI to connect, authenticate, select the database.')
     parser.add_argument(
         'path',
-        help='the path to the wanted value. If the path points to something not being a simple value, the content is returned as a JSON string.')
+        help='the path to the wanted value.'
+        'If the path points to something not being a simple value, the content is returned as a JSON string.')
     parser.add_argument(
         'command',
         help='command is the command name such as serverStatus, dbStats, find, count and etc.')
