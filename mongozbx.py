@@ -21,7 +21,7 @@ class ArgumentParser(argparse.ArgumentParser):
         sys.exit(
             stderr(message))
 
-def parseargs():
+def parse_args():
     parser = ArgumentParser(
         description='Zabbix agent (3.0) native plugin for Mongodb monitoring.',
         add_help=False)
@@ -88,7 +88,7 @@ def stdout(message=''):
 
 def main():
     try:
-        args = parseargs()
+        args = parse_args()
         mclient = pymongo.MongoClient(args.uri)
         try:
             db = mclient.get_default_database()
