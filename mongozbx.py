@@ -71,6 +71,9 @@ def prepare_query(command, query):
                 i = 0
         else:
             break
+    for item in query:
+        if '=' not in item:
+            raise Exception('Query is not correct')
     query = dict(s.split('=') for s in query)
     if command not in query:
         raise Exception('Didn\'t find command \'{0}\' in query'.format(command))
