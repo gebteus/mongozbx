@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import sys
-def stderr(message='', code=1):
+def stderr(error, code=1):
     sys.stderr.write('Error: {0}.\n'.format(
-        str(message)))
+        str(error)))
     return code
 
 import json
@@ -12,9 +12,9 @@ try:
     import pymongo
     from bson import SON
     from bson import json_util
-except ImportError as _ie:
+except ImportError as _err:
     sys.exit(
-        stderr(_ie))
+        stderr(_err))
 
 class ArgumentParser(argparse.ArgumentParser):
     def error(self, message):
@@ -99,13 +99,13 @@ def main():
                 SON(query))
             stdout(json.dumps(
                 get_value_through_path(response, args.path), default=json_util.default))
-        except Exception as _e:
-            raise _e
+        except Exception as _err:
+            raise _err
         finally:
             mclient.close()
-    except Exception as _e:
+    except Exception as _err:
         sys.exit(
-            stderr(_e))
+            stderr(_err))
     else:
         sys.exit(0)
 
