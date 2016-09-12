@@ -37,7 +37,7 @@ def parse_args():
         'command',
         help='command is the command name such as serverStatus, dbStats, find, count and etc.')
     parser.add_argument(
-        'query', nargs='*',
+        'query', nargs='*', default='',
         help='query is the complete query (including command).')
     return parser.parse_args()
 
