@@ -42,7 +42,8 @@ def parse_args():
     return parser.parse_args()
 
 class q_handler:
-    _instr_ = ['discoverDatabases']
+    _instr_ = [
+        'discoverDatabases']
 
     def __init__(self, uri, command, query):
         if isinstance(command, str) is False or len(command) == 0:
@@ -134,6 +135,7 @@ def discoverDatabases(db):
             result.append({'#DBNAME': dbname})
     return {'data': result}
 
+# Main
 if __name__ == '__main__':
     try:
         args = parse_args()
