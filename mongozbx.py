@@ -132,7 +132,7 @@ def discoverDatabases(db):
     for item in databases:
         dbname = item.get('name')
         if dbname is not None:
-            result.append({'#DBNAME': dbname})
+            result.append({'{#DBNAME}': dbname})
     return {'data': result}
 
 # Main
