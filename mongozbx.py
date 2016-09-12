@@ -42,7 +42,7 @@ def parse_args():
     return parser.parse_args()
 
 class q_handler:
-    _instr_ = []
+    _instr_ = ['discoverDatabases']
 
     def __init__(self, uri, command, query):
         if isinstance(command, str) is False or len(command) == 0:
@@ -119,6 +119,20 @@ def get_value_through_path(data, path):
     except:
         pass
     return item
+
+# Special methods
+def discoverDatabases(db):
+    response = db.command(
+        SON({'listDatabases': 1 }))
+    result = []
+    databases = response.get('databases')
+    if databases is None:
+        raise Exception('Get databases list failed')
+    for item in databases:
+        dbname = item.get('name')
+        if dbname is not None:
+            result.append({'#DBNAME': dbname})
+    return {'data': result}
 
 if __name__ == '__main__':
     try:
