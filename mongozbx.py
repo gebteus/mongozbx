@@ -63,7 +63,7 @@ class q_handler:
         if self.command in self._instr_:
             glob = globals()
             function = glob.get(self.command)
-            if function:
+            if function is not None:
                 return function(self.db)
             else:
                 raise Exception('Function \'{0}\' not found'.format(
