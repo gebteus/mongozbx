@@ -138,7 +138,7 @@ def discoverDatabases(db):
     return {'data': result}
 
 # Main
-if __name__ == '__main__':
+def main():
     try:
         args = parse_args()
         hdlr = q_handler(args.uri, args.command, args.query)
@@ -155,3 +155,6 @@ if __name__ == '__main__':
             stderr(_err))
     else:
         sys.exit(0)
+
+if __name__ == '__main__':
+    main()
