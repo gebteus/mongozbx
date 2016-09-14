@@ -16,6 +16,8 @@ except ImportError as _err:
     sys.exit(
         stderr(_err))
 
+_SCRIPT_VERSION = '0.1'
+
 class ArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         self.print_help()
