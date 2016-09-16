@@ -25,7 +25,7 @@ An XML template with a few useful example queries and databases discovery is pro
 ###Server configuration
 - Import [zabbix template](zbx_mongodb_template.xml).
 - Link it to target host.
-- Set {$MGO_URL}(see [mongo_uri](#mongo_uri))  macro and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run.
+- Set {$MGO_URL} macro (see [mongo_uri](#mongo_uri)) and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run.
 
 ##Usage
 
