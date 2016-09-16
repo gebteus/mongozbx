@@ -1,15 +1,11 @@
 #mongozbx
-Zabbix agent (3.0) native plugin for Mongodb monitoring.
+Zabbix agent (3.X) externral script for Mongodb monitoring.
 
-This plugin is an agent Loadable Module (https://www.zabbix.com/documentation/3.0/manual/config/items/loadablemodules).
+The work is based on m-barthelemy`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old)
 
 It can connect to a Mongo server, run basic queries and return a simple value usable by Zabbix server.
 
-An XML template with a few useful example queries that you can import in your Zabbix server (Configuration -> Templates -> Import) is provided.
-
-##Zabbix Configuration
-
-...
+An XML template with a few useful example queries databases auto discovery is provided.
 
 ##Requires
 Install pymongo
@@ -20,6 +16,12 @@ Install BSON
 
     pip install --upgrade bson
 
+##Zabbix Configuration
+
+- Import [zabbix template](zbx_mongodb_template.xml)
+- Link it to target host
+- Set {$MGO_URL}(see [mongo_uri](#mongo_uri)  macro and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run
+
 ##Usage
 
 The module is called by defining a regular Zabbix agent item:
@@ -28,7 +30,7 @@ The module is called by defining a regular Zabbix agent item:
 
 with:
 
-####`mongo_uri `:
+####<a name="mongo_uri"></a>`mongo_uri `:
 
 The Mongo URI to connect, authenticate, select the database:
 
