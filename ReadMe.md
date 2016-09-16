@@ -58,7 +58,7 @@ Examples:
 
   If we want a single value from an array, we can fetch it by its index : `/path/to/array[0]`
 
-More examples in the `zbx_mongo_template.xml` file.
+More examples in the `zbx_mongodb_template.xml` file.
 
 ####`command`:
 
