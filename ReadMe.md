@@ -21,8 +21,9 @@ An XML template with a few useful example queries databases auto discovery is pr
 ```
 - Put [monbozbx.py](mongozbx.py) into your agent's scripts directory.
 - Add ```UserParameter=mongo.run[*],<path to your agent's scripts directory>/mongozbx.py "$1" "$2" "$3" "$4"``` to the  zabix_agentd.conf or as a separate .conf file into zabbix_agentd.d folder.
+
 ###Server configuration
-- Import [zabbix template](zbx_mongodb_template.xml)/
+- Import [zabbix template](zbx_mongodb_template.xml).
 - Link it to target host.
 - Set {$MGO_URL}(see [mongo_uri](#mongo_uri))  macro and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run.
 
