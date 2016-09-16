@@ -1,5 +1,5 @@
 #mongozbx
-Zabbix agent (3.X) externral script for Mongodb monitoring.
+Zabbix agent (3.X) external script for Mongodb monitoring.
 
 The work is based on [m-barthelemy](https://github.com/m-barthelemy)`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old).
 
