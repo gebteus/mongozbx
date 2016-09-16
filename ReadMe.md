@@ -1,26 +1,30 @@
 #mongozbx
 Zabbix agent (3.X) externral script for Mongodb monitoring.
 
-The work is based on [m-barthelemy](https://github.com/m-barthelemy)`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old)
+The work is based on [m-barthelemy](https://github.com/m-barthelemy)`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old).
 
 It can connect to a Mongo server, run basic queries and return a simple value usable by Zabbix server.
 
 An XML template with a few useful example queries databases auto discovery is provided.
 
-##Requires
-Install pymongo
-
-    pip install --upgrade pymongo
-
-Install BSON
-
-    pip install --upgrade bson
 
 ##Zabbix Configuration
 
-- Import [zabbix template](zbx_mongodb_template.xml)
-- Link it to target host
-- Set {$MGO_URL}(see [mongo_uri](#mongo_uri))  macro and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run
+###Agent configuration
+- Install pymongo
+```bash
+    pip install --upgrade pymongo
+```
+- Install BSON
+```bash
+    pip install --upgrade bson
+```
+- Put [monbozbx.py](mongozbx.py) into your agent's scripts directory.
+- Add ```UserParameter=mongo.run[*],<path to your agent's scripts directory>/mongozbx.py "$1" "$2" "$3" "$4"``` to the  zabix_agentd.conf or as a separate .conf file into zabbix_agentd.d folder.
+###Server configuration
+- Import [zabbix template](zbx_mongodb_template.xml)/
+- Link it to target host.
+- Set {$MGO_URL}(see [mongo_uri](#mongo_uri))  macro and don`t specify the exact database so [LLD](https://www.zabbix.com/documentation/3.0/manual/discovery/low_level_discovery) can run.
 
 ##Usage
 
