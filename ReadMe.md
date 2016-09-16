@@ -61,9 +61,9 @@ Examples:
 
     {"avgObjSize":0,"collections":0,"dataSize":0,"db":"test","fileSize":0,"indexSize":0,"indexes":0,"numExtents":0,"objects":0,"ok":1,"storageSize":0}
 
-  If we want to get the value of the `dataSize` property, then `wanted_value` will be `/dataSize `.
+  If we want to get the value of the `dataSize` property, then `wanted_value` will be `/dataSize`.
 
-  If we want a single value from an array, we can fetch it by its index : `/path/to/array[0]`
+  If we want a single value from an array, we can fetch it by its index : `/path/to/array[0]`.
 
 More examples in the `zbx_mongodb_template.xml` file.
 
