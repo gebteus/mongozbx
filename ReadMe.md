@@ -5,7 +5,7 @@ The work is based on [m-barthelemy](https://github.com/m-barthelemy)`s [native p
 
 It can connect to a Mongo server, run basic queries and return a simple value usable by Zabbix server.
 
-An XML template with a few useful example queries databases auto discovery is provided.
+An XML template with a few useful example queries and databases discovery is provided.
 
 
 ##Zabbix Configuration
