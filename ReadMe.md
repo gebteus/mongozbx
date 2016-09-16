@@ -19,7 +19,7 @@ An XML template with a few useful example queries and databases discovery is pro
 ```bash
     pip install --upgrade bson
 ```
-- Put [monbozbx.py](mongozbx.py) into your agent's scripts directory.
+- Put [mongozbx.py](mongozbx.py) into your agent's scripts directory.
 - Add ```UserParameter=mongo.run[*],<path to your agent's scripts directory>/mongozbx.py "$1" "$2" "$3" "$4"``` to the  zabix_agentd.conf or as a separate .conf file into zabbix_agentd.d folder.
 
 ###Server configuration
