@@ -1,7 +1,7 @@
 #mongozbx
 Zabbix agent (3.X) externral script for Mongodb monitoring.
 
-The work is based on m-barthelemy`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old)
+The work is based on [m-barthelemy](https://github.com/m-barthelemy)`s [native plugun](https://github.com/m-barthelemy/zabbix-mongo-old)
 
 It can connect to a Mongo server, run basic queries and return a simple value usable by Zabbix server.
 
