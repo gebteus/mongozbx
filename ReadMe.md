@@ -7,6 +7,7 @@ It can connect to a Mongo server, run basic queries and return a simple value us
 
 An XML template with a few useful example queries and databases discovery is provided.
 
+Published under [MIT](License) license.
 
 ##Zabbix Configuration
 
