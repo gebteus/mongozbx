@@ -16,10 +16,6 @@ Published under [MIT](License) license.
 ```bash
     pip install --upgrade pymongo
 ```
-- Install BSON
-```bash
-    pip install --upgrade bson
-```
 - Put [mongozbx.py](mongozbx.py) into your agent's scripts directory.
 - Add ```UserParameter=mongo.run[*],<path to your agent's scripts directory>/mongozbx.py "$1" "$2" "$3" "$4"``` to the  zabix_agentd.conf or as a separate .conf file into zabbix_agentd.d folder.
 
