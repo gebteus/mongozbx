@@ -17,7 +17,6 @@ setup(
         'console_scripts': 'mongozbx=mongozbx:main',
     },
     install_requires=[
-        'pymongo',
-        'bson'
+        'pymongo'
     ]
 )
